@@ -7,7 +7,7 @@ if($method == 'GET'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
 
-	$text = $json->results->metadata->intentName; 
+	$text = $json->metadata->intentName->text; 
 
 	switch ($text) {
 		case 'hi':
