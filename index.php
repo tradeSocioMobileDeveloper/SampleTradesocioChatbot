@@ -11,6 +11,7 @@ if($method == 'POST'){
     switch ($text) {
         case 'iOS':
             $speech = "Hi, Nice to meet you";
+	    $display = "nice to see you buddy!!!!!!";	    
             break;
         case 'bye':
             $speech = "Bye, good night";
@@ -25,7 +26,7 @@ if($method == 'POST'){
     }
     $response = new \stdClass();
     $response->speech = $speech;
-    $response->displayText = $speech;
+    $response->displayText = $display;
     $response->source = "webhook";
     echo json_encode($response);
 }
