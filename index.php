@@ -6,12 +6,8 @@ $method = $_SERVER['REQUEST_METHOD'];
 if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
-
-	$text = $json->queryResult->queryText;
-
-	$json->queryResult->fulfillmentMessages->text->text = "Hi, Nice to meet you";
-	echo json_encode($json);
-	exit;
+	$text = $json->queryResult->intent->displayName;
+	
 	switch ($text) {
 		case 'hi':
 			$json->queryResult->fulfillmentMessages->text->text = "Hi, Nice to meet you";
