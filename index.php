@@ -7,9 +7,9 @@ if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
 
-    $text = $json->result->metadata->intentName;
+    $text = $json->result->action;
     switch ($text) {
-        case 'hi':
+        case 'iOS':
             $speech = "Hi, Nice to meet you";
             break;
         case 'bye':
