@@ -6,32 +6,32 @@ $method = $_SERVER['REQUEST_METHOD'];
 if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
-	$text = $json->result->intent->metadata->intentName;
-	
-	switch ($text) {
-		case 'hi':
-			$json->queryResult->fulfillmentMessages->text->text = "Hi, Nice to meet you";
-			break;
 
-		case 'bye':
-			$json->queryResult->fulfillmentMessages->text->text = "Bye, good night";
-			break;
-
-		case 'anything':
-			$json->queryResult->fulfillmentMessages->text->text = "Yes, you can type anything here.";
-			break;
-		
-		default:
-			$json->queryResult->fulfillmentMessages->text->text = "Sorry, I didnt get that. Please ask me something else.";
-			break;
-	}
- 
-	echo json_encode($json);
+    $text = $json->result->metadata->intentName;
+    switch ($text) {
+        case 'hi':
+            $speech = "Hi, Nice to meet you";
+            break;
+        case 'bye':
+            $speech = "Bye, good night";
+            break;
+        case 'anything':
+            $speech = "Yes, you can type anything here.";
+            break;
+            
+        default:
+            $speech = "Sorry, I didnt get that. Please ask me something else.";
+            break;
+    }
+    $response = new \stdClass();
+    $response->speech = $speech;
+    $response->displayText = $speech;
+    $response->source = "webhook";
+    echo json_encode($response);
 }
 else
-{
-	echo "Method not alloweddddd";
-}
+    {
+        echo "Method not alloweddddd";
+    }
 
 ?>
-
