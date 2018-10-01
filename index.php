@@ -3,11 +3,11 @@
 $method = $_SERVER['REQUEST_METHOD'];
 
 // Process only when method is POST
-if($method == 'POST'){
+if($method == 'GET'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
 
-	$text = $json->result->parameters->text;
+	$text = $json->results->metadata->intentName; 
 
 	switch ($text) {
 		case 'hi':
