@@ -9,6 +9,9 @@ if($method == 'POST'){
 
 	$text = $json->queryResult->queryText;
 
+	$json->queryResult->fulfillmentMessages->text->text = "Hi, Nice to meet you";
+	echo json_encode($json);
+	exit;
 	switch ($text) {
 		case 'hi':
 			$json->queryResult->fulfillmentMessages->text->text = "Hi, Nice to meet you";
