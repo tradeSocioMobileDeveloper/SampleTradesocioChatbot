@@ -7,32 +7,39 @@ if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
 
-    $text = $json->result->action;
-    switch ($text) {
-        case 'iOS':
-            $speech = "Hi, Nice to meet you";
-	    $display = "nice to see you buddy!!!!!!";	    
-            break;
-        case 'bye':
-            $speech = "Bye, good night";
-            break;
-        case 'anything':
-            $speech = "Yes, you can type anything here.";
-            break;
-            
-        default:
-            $speech = "Sorry, I didnt get that. Please ask me something else.";
-            break;
-    }
-    $response = new \stdClass();
-    $response->speech = $speech;
-    $response->displayText = $display;
-    $response->source = "webhook";
-    echo json_encode($response);
+	$text = $json->queryResult->queryText;
+ 
+	switch ($text) {
+		case 'hi':
+		$check->fulfillmentText = "Hi, hi hi hi hi ";
+			//$check->displayText = "Hi, Nice to meet you";
+			//$check->source = "webhook-echo-sample";
+			break;
+
+		case 'bye':
+		$check->fulfillmentText = "Hi, bye bye bye bye";
+		//$check->displayText = "Hi, Nice to meet you";
+		//$check->source = "webhook-echo-sample";
+			break;
+
+		case 'anything':
+		$check->fulfillmentText = "Hi, Nice to meet you anything anything";
+		//$check->displayText = "Hi, Nice to meet you";
+		//$check->source = "webhook-echo-sample";
+			break;
+		
+		default:
+		$check->fulfillmentText = "Default texttttttt";
+		//$check->displayText = "Hi, Nice to meet you";
+		//$check->source = "webhook-echo-sample";
+			break;
+	}
+ 
+	echo json_encode($check);
 }
 else
-    {
-        echo "Method not alloweddddd";
-    }
+{
+	echo "Method not alloweddddd";
+}
 
 ?>
