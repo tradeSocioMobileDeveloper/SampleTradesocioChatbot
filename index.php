@@ -10,19 +10,19 @@ if($method == 'POST'){
 	$text = $json->queryResult->queryText;
  
 	switch ($text) {
-		case 'hi':
+		case 'Hi':
 		$check->fulfillmentText = "Hi, hi hi hi hi ";
 			//$check->displayText = "Hi, Nice to meet you";
 			//$check->source = "webhook-echo-sample";
 			break;
 
-		case 'bye':
+		case 'Bye':
 		$check->fulfillmentText = "Hi, bye bye bye bye";
 		//$check->displayText = "Hi, Nice to meet you";
 		//$check->source = "webhook-echo-sample";
 			break;
 
-		case 'anything':
+		case 'Anything':
 		$check->fulfillmentText = "Hi, Nice to meet you anything anything";
 		//$check->displayText = "Hi, Nice to meet you";
 		//$check->source = "webhook-echo-sample";
