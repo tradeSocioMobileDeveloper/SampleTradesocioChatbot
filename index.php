@@ -16,7 +16,7 @@ if($method == 'POST'){
 			//$check->source = "webhook-echo-sample";
 			break;
 
-		case 'bye':
+		case 'bye-bye':
 		$check->fulfillmentText = "Hi...... bye bye";
 		//$check->displayText = "Hi, Nice to meet you";
 		//$check->source = "webhook-echo-sample";
