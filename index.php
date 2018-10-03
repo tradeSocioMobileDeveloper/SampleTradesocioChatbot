@@ -11,7 +11,7 @@ if($method == 'POST'){
  
 	switch ($text) {
 		case 'hi':
-		$check->fulfillmentText = "Hi, Its a worderful day ";
+		$check->fulfillmentText = "Hi, Its a worderful day , welcome to the Tradesocio ";
 			//$check->displayText = "Hi, Nice to meet you";
 			//$check->source = "webhook-echo-sample";
 			break;
@@ -29,7 +29,7 @@ if($method == 'POST'){
 			break;
 		
 		default:
-		$check->fulfillmentText = "Default texttttttt";
+		$check->fulfillmentText = "Sorry I did not get that...!!";
 		//$check->displayText = "Hi, Nice to meet you";
 		//$check->source = "webhook-echo-sample";
 			break;
