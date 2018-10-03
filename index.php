@@ -8,14 +8,23 @@ if($method == 'POST'){
 	$json = json_decode($requestBody);
 
 	$text = $json->queryResult->queryText;
- 
+    if(strstr("balance",$text))
+    {
+        $text = "balance";
+    }
+    
+    
 	switch ($text) {
-		case 'hi':
-		$check->fulfillmentText = "Hi, Its a worderful day , welcome to the Tradesocio ";
+		case 'balance':
+		$check->fulfillmentText = "Your balance is $1000 ";
 			//$check->displayText = "Hi, Nice to meet you";
 			//$check->source = "webhook-echo-sample";
 			break;
-
+        case 'hi':
+            $check->fulfillmentText = "Hi, Its a worderful day , welcome to the Tradesocio ";
+            //$check->displayText = "Hi, Nice to meet you";
+            //$check->source = "webhook-echo-sample";
+            break;
 		case 'bye-bye':
 		$check->fulfillmentText = "Hi...... bye bye";
 		//$check->displayText = "Hi, Nice to meet you";
