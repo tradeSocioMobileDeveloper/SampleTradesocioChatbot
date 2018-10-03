@@ -8,13 +8,12 @@ if($method == 'POST'){
 	$json = json_decode($requestBody);
         
 	$text = $json->queryResult->queryText;
-    if(strstr("balance",$text))
+	
+    if (strpos($text, 'balance') !== false)
     {
         $text = "balance";
     }
     
-    print_r($json);
-    echo $text;
 	switch ($text) {
 		case 'balance':
 		$check->fulfillmentText = "Your balance is $1000 ";
