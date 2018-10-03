@@ -6,14 +6,15 @@ $method = $_SERVER['REQUEST_METHOD'];
 if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
-
+        
 	$text = $json->queryResult->queryText;
     if(strstr("balance",$text))
     {
         $text = "balance";
     }
     
-    
+    print_r($json);
+    echo $text;
 	switch ($text) {
 		case 'balance':
 		$check->fulfillmentText = "Your balance is $1000 ";
