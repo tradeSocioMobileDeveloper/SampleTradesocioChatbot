@@ -103,7 +103,7 @@ if($method == 'POST'){
 		//$check->displayText = "Hi, Nice to meet you";
 		//$check->source = "webhook-echo-sample";
 			break;
-		case 'thanx':
+		case 'thanks':
 		$check->fulfillmentText = "You are welcome.";
 			//$check->displayText = "Hi, Nice to meet you";
 			//$check->source = "webhook-echo-sample";
