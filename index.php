@@ -9,11 +9,19 @@ function explodeKeyword($text)
 		$getTxtArray = explode("==TSTEXT",$text);
 		$getBalanceArray = explode("::",$getTxtArray[1]);
 		 
-		if(in_array("profileID",$getBalanceArray)) $profileID = $getBalanceArray[2];
-		if(in_array("AccountID",$getBalanceArray)) $AccountID = $getBalanceArray[2];
+		if(in_array("profileID",$getBalanceArray)) 
+		{
+			$profileID = $getBalanceArray[2];
+		}
+		if(in_array("AccountID",$getBalanceArray)) 
+		{
+			$AccountID = $getBalanceArray[count($getBalanceArray)-1];
+			//echo count($getBalanceArray);
+			//echo "<pre>";print_r($getBalanceArray);
+		}
 		
 		$keyword  = "balance";
-		if($profileID )  $output=" Balance of your Profile # ".$profileID ." is $ 1020 ";
+		if($profileID ) $output=" Balance of your Profile # ".$profileID ." is $ 1020 ";
 		if($AccountID) $output=" Balance of your account # ".$AccountID ." is $ 1020 ";
 		
 		try
@@ -22,15 +30,14 @@ function explodeKeyword($text)
 			if (FALSE === $ch){
 			throw new Exception('failed to initialize');
 		}
-            
 		$domain = "http://demosite3.fxsocio.com/";
 		//$domain = "http://new.fxsocio.com/";
-		curl_setopt($ch, CURLOPT_URL,$domain."webservices_new/getbalance.php?AccountID=".$AccountID);
+		curl_setopt($ch, CURLOPT_URL,$domain."webservices_new/getbalance.php?profileID=$profileID&AccountID=".$AccountID);
 		curl_setopt($ch, CURLOPT_POST, TRUE);
  		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        $p_result = curl_exec($ch);
-        return $p_result;
+		$p_result = curl_exec($ch);
+		return $p_result;
 		exit();
 		if (FALSE === $p_result) {
 		throw new Exception(curl_error(), curl_errno());
