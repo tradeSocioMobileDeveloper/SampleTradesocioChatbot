@@ -1,7 +1,5 @@
 <?php 
-
 $method = $_SERVER['REQUEST_METHOD'];
-
 
 $text_temp = $_REQUEST['text_temp'];
 function explodeKeyword($text)
@@ -18,8 +16,33 @@ function explodeKeyword($text)
 		if($profileID )  $output=" Balance of your Profile # ".$profileID ." is $ 1020 ";
 		if($AccountID) $output=" Balance of your account # ".$AccountID ." is $ 1020 ";
 		
+		try
+		{
+			$ch = curl_init();
+			if (FALSE === $ch){
+			throw new Exception('failed to initialize');
+		}
+		$domain = "http://demosite3.fxsocio.com/";
+		//$domain = "http://new.fxsocio.com/";
+		curl_setopt($ch, CURLOPT_URL,$domain."webservices_new/getbalance.php?AccountID=".$AccountID);
+		curl_setopt($ch, CURLOPT_POST, TRUE);
+ 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		echo $p_result = curl_exec($ch);
+		exit();
+		if (FALSE === $p_result) {
+		throw new Exception(curl_error(), curl_errno());
+		curl_close($ch);
+		} else{
+		curl_close($ch);
+		return $p_result;
+		}
+		}catch(Exception $e) {
+		trigger_error(sprintf('Curl failed with error #%d: %s',$e->getCode(),
+		$e->getMessage()),E_USER_ERROR); 
 		return $output ; 
-		 
+		}
+		
 	}
 }
 
