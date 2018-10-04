@@ -22,14 +22,15 @@ function explodeKeyword($text)
 			if (FALSE === $ch){
 			throw new Exception('failed to initialize');
 		}
-            echo  $output ; return false;
+            
 		$domain = "http://demosite3.fxsocio.com/";
 		//$domain = "http://new.fxsocio.com/";
 		curl_setopt($ch, CURLOPT_URL,$domain."webservices_new/getbalance.php?AccountID=".$AccountID);
 		curl_setopt($ch, CURLOPT_POST, TRUE);
  		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-		echo $p_result = curl_exec($ch);
+        $p_result = curl_exec($ch);
+        return $p_result;
 		exit();
 		if (FALSE === $p_result) {
 		throw new Exception(curl_error(), curl_errno());
