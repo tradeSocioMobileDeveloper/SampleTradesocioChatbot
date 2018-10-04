@@ -22,6 +22,7 @@ function explodeKeyword($text)
 			if (FALSE === $ch){
 			throw new Exception('failed to initialize');
 		}
+            echo  $output ; return false;
 		$domain = "http://demosite3.fxsocio.com/";
 		//$domain = "http://new.fxsocio.com/";
 		curl_setopt($ch, CURLOPT_URL,$domain."webservices_new/getbalance.php?AccountID=".$AccountID);
