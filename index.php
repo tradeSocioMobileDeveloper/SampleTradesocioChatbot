@@ -55,7 +55,6 @@ function explodeKeyword($text)
 	if (strpos($text, 'total') !== false && strpos($text, 'invested') !== false)
 	  $curlURL = $domain."webservices_new/getbalance.php?keyworddetails=totalinvested&profileID=$profileID&AccountID=".$AccountID;
 	
-	
 	try
 	{
 		$ch = curl_init();
@@ -101,18 +100,11 @@ if($method == 'POST'){
 
 	$text = $json->queryResult->queryText;
 	$keyword  = $text;
-	if(strstr($text,"balance"))
-	{
-		 $keyword  = "balance";
-	}
+	 
 	
 	switch ($keyword) 
 	{
-		case 'balance':
-		$check->fulfillmentText = explodeKeyword($text) ;
-			//$check->displayText = "Hi, Nice to meet you";
-			//$check->source = "webhook-echo-sample";
-			break;
+		 
 	
 		case 'hi':
 		$check->fulfillmentText = "Hi, Its a worderful day , welcome to the Tradesocio ";
@@ -133,7 +125,7 @@ if($method == 'POST'){
 			break;
 		
 		default:
-		$check->fulfillmentText = "Sorry I did not get that...!!";
+		$check->fulfillmentText = explodeKeyword($text) ;
 		//$check->displayText = "Hi, Nice to meet you";
 		//$check->source = "webhook-echo-sample";
 			break;
